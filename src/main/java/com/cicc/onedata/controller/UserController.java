@@ -1,6 +1,7 @@
 package com.cicc.onedata.controller;
 
 import com.cicc.onedata.bean.User;
+import com.cicc.onedata.common.CommonResponse;
 import com.cicc.onedata.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class UserController {
     IUserService userService;
 
     @RequestMapping(value = "add" , method = RequestMethod.GET)
-    public String add(){
+    public CommonResponse add(){
 
         User user = new User();
         user.setName("zwj");
@@ -28,17 +29,17 @@ public class UserController {
 
         userService.saveUser(user);
 
-        return "success";
+        return new CommonResponse("200",null,"success");
     }
 
     @RequestMapping(value = "/getusers" , method = RequestMethod.GET)
-    public List<User> findAllUsers(){
-        return userService.findAll();
+    public CommonResponse findAllUsers(){
+        return new CommonResponse("200",userService.findAll(),"success");
     }
 
     @RequestMapping(value = "/findbyid",method = RequestMethod.GET)
-    public User findById(Integer id){
-        return userService.getUserById(id);
+    public CommonResponse findById(Integer id){
+        return new CommonResponse("200",userService.getUserById(id),"success");
     }
 
 
