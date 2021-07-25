@@ -26,12 +26,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserById(Integer id) {
-        return iUserDao.getById(id);
-    }
-
-    @Override
-    public User findByNameAndPassword(String name, String password) {
-        return iUserDao.findUserByNameAndPassword(name,password);
+        return iUserDao.getOne(id);
     }
 
     @Override

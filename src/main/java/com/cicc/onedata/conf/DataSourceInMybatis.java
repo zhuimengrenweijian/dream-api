@@ -1,6 +1,5 @@
 package com.cicc.onedata.conf;
 
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,22 +13,15 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
-//@Configuration //注册到spring容器中
-//@MapperScan(basePackages = {"com.cicc.onedata.mybatisdao","mapper"}, sqlSessionFactoryRef = "mybatisSqlSessionFactory")
+@Configuration //注册到spring容器中
+@MapperScan(basePackages = "com.cicc.onedata.mybatisdao", sqlSessionFactoryRef = "mybatisSqlSessionFactory")
 public class DataSourceInMybatis {
 
-    /**
-     * 配置mybatis数据库
-     *
-     * @return
-     */
-/*
     @Bean(name = "mybatisDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.product")
+    @ConfigurationProperties(prefix = "spring.datasource.mybatis")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
-*/
 
     /**
      * 创建SqlSessionFactory
@@ -38,7 +30,6 @@ public class DataSourceInMybatis {
      * @return
      * @throws Exception
      */
-/*
     @Bean(name = "mybatisSqlSessionFactory")
     // @Primary  //primary是设置优先，因为有多个数据源，在没有明确指定用哪个的情况下，会用带有primary的，这个注解必须有一个数据源要添加
     public SqlSessionFactory sqlSessionFactory(@Qualifier("mybatisDataSource") DataSource dataSource) throws Exception {
@@ -46,16 +37,14 @@ public class DataSourceInMybatis {
         bean.setDataSource(dataSource);
         return bean.getObject();
     }
-*/
 
     /**
      * 配置事务管理
      *
      * @param dataSource
-     *
      * @return
      */
-/*    @Bean("mybatisTransactionManager")
+    @Bean("mybatisTransactionManager")
     public DataSourceTransactionManager transactionManager(@Qualifier("mybatisDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
@@ -63,6 +52,6 @@ public class DataSourceInMybatis {
     @Bean("mybatisSqlSessionTemplate")
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("mybatisSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
-    }*/
+    }
 
 }
