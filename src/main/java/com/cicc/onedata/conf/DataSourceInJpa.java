@@ -43,8 +43,6 @@ public class DataSourceInJpa {
         return entityManagerFactoryJpa(builder).getObject().createEntityManager();
     }
 
-    @Autowired
-    private JpaProperties jpaProperties;
 
     @Primary
     @Bean(name = "entityManagerFactoryJpa")

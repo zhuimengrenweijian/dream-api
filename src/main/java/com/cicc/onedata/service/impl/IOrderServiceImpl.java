@@ -17,6 +17,7 @@ public class IOrderServiceImpl implements IOrderService {
     @Override
     public List<Order> findAll() {
         System.out.println("IOrderServiceImpl.findAll");
+        System.out.println("orderMapper:" + orderMapper);
         return orderMapper.findAll();
     }
 
